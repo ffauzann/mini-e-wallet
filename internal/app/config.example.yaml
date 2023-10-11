@@ -1,0 +1,28 @@
+server:
+  address: 0.0.0.0 # To run in host/k8s env
+  # address: go-authentication # To run with docker
+  port: 
+    http: 2201
+  logger:
+    format: json
+database:
+  sql:
+    host: localhost # To run in host machine
+    # host: sql # To run within docker env
+    # host: 10.100.168.1 # To run within k8s env
+    port: 3306
+    schema: mini_e_wallet
+    username: <YOUR_USERNAME>
+    password: <YOUR_PASSWORD>
+    autoMigrate: true
+cache:
+  redis:
+    host: localhost # To run in host machine
+    # host: redis # To run within docker env
+    # host: 10.100.168.2 # To run within k8s env
+    port: 6379
+    db: 0
+    password: 
+app:
+  encryption:
+    key: Qa9OjMbtArFE3qRHnOe7X6CDuoe7AxZa # 32 bytes key

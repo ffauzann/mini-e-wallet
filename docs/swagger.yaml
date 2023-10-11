@@ -1,0 +1,173 @@
+basePath: /api/v1
+host: localhost:2201
+info:
+  contact: {}
+  title: Mini E-Wallet API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+      summary: Health check endpoint for k8s
+      tags:
+      - Health and Readiness
+  /init:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - default: 49437636-fa79-40fb-b5cf-5f066235fdda
+        description: uuid
+        in: formData
+        name: customer_xid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Create new account
+      tags:
+      - Account Management
+  /readiness:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+      summary: Readiness endpoint for k8s
+      tags:
+      - Health and Readiness
+  /wallet:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get balance
+      tags:
+      - Account Management
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Disable wallet
+      tags:
+      - Account Management
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Enable wallet
+      tags:
+      - Account Management
+  /wallet/deposits:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 49437636-fa79-40fb-b5cf-5f066235fdda
+        description: UUID
+        in: formData
+        name: reference_id
+        required: true
+        type: string
+      - default: 10000
+        description: Deposit Amount
+        in: formData
+        name: amount
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses: {}
+      summary: Make a deposit
+      tags:
+      - Transaction Management
+  /wallet/transactions:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Get transaction history
+      tags:
+      - Transaction Management
+  /wallet/withdrawals:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - default: Token xxx
+        description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: 49437636-fa79-40fb-b5cf-5f066235fdda
+        description: UUID
+        in: formData
+        name: reference_id
+        required: true
+        type: string
+      - default: 10000
+        description: Withdrawal Amount
+        in: formData
+        name: amount
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses: {}
+      summary: Request a withdrawal
+      tags:
+      - Transaction Management
+swagger: "2.0"
